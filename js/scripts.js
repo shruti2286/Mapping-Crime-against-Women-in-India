@@ -4,16 +4,13 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2hydXRpMjE1IiwiYSI6ImNrNzR3dndkYjBpYTEzaHBvZ
 var map = new mapboxgl.Map({
   container: 'mapContainer',
   style: 'mapbox://styles/mapbox/light-v10',
-  center: [79.171153,22.912037],
-  zoom: 4.25,
+  center: [77.108609, 24.565264],
+  zoom: 3.5,
 });
 
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
-//$(document).ready(function(){
-//  $(":radio").hide();
-//});
 // Load map and initialize layers
 // Layers are initially hidden, and will change visual properties depending
 // on what data source is selected for the map through the various buttons
@@ -38,21 +35,24 @@ map.on('style.load', function() {
     paint: {
       'fill-opacity': 0.3,
     }
-  }, 'waterway-label')
+  }, 'waterway-label');
 
   // add census tract lines layer
   map.addLayer({
-   id: 'typology-line',
-   type: 'line',
-   source: 'crime-data',
-   paint: {
-     'line-opacity': 0,
-     'line-color': 'black',
-     'line-opacity': {
-       stops: [[12, 0], [14.8, 1]], // zoom-dependent opacity, the lines will fade in between zoom level 14 and 14.8
-     }
-   }
- }, 'waterway-label');
+    id: 'typology-line',
+    type: 'line',
+    source: 'crime-data',
+    paint: {
+      'line-opacity': 0.6,
+      'line-color': 'black',
+      'line-opacity': {
+        stops: [
+          [12, 0],
+          [14.8, 1]
+        ], // zoom-dependent opacity, the lines will fade in between zoom level 14 and 14.8
+      }
+    }
+  });
 
   // add an empty data source, which highlights the tract that a user clicks on
   map.addSource('highlight-feature', {
@@ -69,14 +69,14 @@ map.on('style.load', function() {
     type: 'line',
     source: 'highlight-feature',
     paint: {
-      'line-width': 3,
-      'line-color': 'red',
+      'line-width': 2.5,
+      'line-color': '#6B6B6B',
       'line-opacity': 0,
     }
   });
 
   // when the user clicks on the census tract map, do...
-  map.on('click', function (e) {
+  map.on('click', function(e) {
 
     // selects the census tract features under the mouse
     var features = map.queryRenderedFeatures(e.point, {
@@ -86,53 +86,41 @@ map.on('style.load', function() {
     // get the first feature from the array of returned features.
     var gradeObj = features[0]
 
-    if (gradeObj) {  // if there's a tract under the mouse, do...
-    map.getCanvas().style.cursor = 'pointer';  // make the cursor a pointer
+    if (gradeObj) { // if there's a tract under the mouse, do...
+      map.getCanvas().style.cursor = 'pointer'; // make the cursor a pointer
 
-    // lookup the corresponding description for the typology
-	console.log( gradeObj );
-    var grade = gradeObj.properties["grade18"];
-    var st_nm = gradeObj.properties["st_nm"];
-    var Pop2011 = gradeObj.properties["Pop2011"];
-    var popden = gradeObj.properties["popden"];
+      //lookup the corresponding description for the typology
+      console.log(gradeObj);
+      var st_nm = gradeObj.properties["state"];
+      var Pop2011 = gradeObj.properties["Pop2011"];
+      var pershare = gradeObj.properties["pershare"];
+      var popden = gradeObj.properties["popden"];
 
-    //add popup to display typology of selected tract and detailed data
-    /* new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
-    .setHTML(
-      `<div id="popup" class="popup" style="z-index: 10; color:${StateLookup(grade).color};">` +
-      '<b> Name of  State: </b>' + st_nm +" </br>" +
-      '<b> Risk Level: </b>' + grade + " </br>" +
-      '<b> State Population: </b>' + Pop2011 + " </br>" +
-      '<b> Population Density: </b>' + popden + " (" + '</div>'
-    )
-    .addTo(map); */
-
-
-	new mapboxgl.Popup()
-    .setLngLat(e.lngLat)
-    .setHTML(
-	  '<div id="popup" class="popup" style="z-index: 10; color:white;">' +
-      '<b> Name of  State: </b>' + st_nm +" </br>" +
-      '<b> Risk Level: </b>' + grade + " </br>" +
-      '<b> State Population: </b>' + Pop2011 + " </br>" +
-      '<b> Population Density: </b>' + popden + " (" + '</div>'
-    )
-    .addTo(map);
+      //add popup to display typology of selected tract and detailed data
+      new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(
+          '<div id="popup" class="popup" style="z-index: 10; color:white;">' +
+          '<b> Name of  State: </b>' + st_nm + " </br>" +
+          '<b> State Population: </b>' + Pop2011 + " </br>" +
+          '<b> Percentage Share of Women: </b>' + pershare + "%" + "</br>" +
+          '<b> Population Density: </b>' + popden + " persons per mile" + '</div>'
+        )
+        .addTo(map);
 
 
-    // set this tract's polygon feature as the data for the highlight source
-    map.getSource('highlight-feature').setData(gradeObj.geometry);
-  } else {
-    map.getCanvas().style.cursor = 'default'; // make the cursor default
+      // set this tract's polygon feature as the data for the highlight source
+      map.getSource('highlight-feature').setData(gradeObj.geometry);
+    } else {
+      map.getCanvas().style.cursor = 'default'; // make the cursor default
 
-    // reset the highlight source to an empty featurecollection
-    map.getSource('highlight-feature').setData({
-      type: 'FeatureCollection',
-      features: []
-    });
-  }
-});
+      // reset the highlight source to an empty featurecollection
+      map.getSource('highlight-feature').setData({
+        type: 'FeatureCollection',
+        features: []
+      });
+    }
+  });
 });
 
 //on button click, load map and legend for "2018 Statistics"
@@ -154,8 +142,8 @@ $('#button18').on('click', function() {
     ]
   });
 
-  map.setPaintProperty('highlight-line', 'line-opacity', 0.7);
-  map.setPaintProperty('highlight-line', 'line-color', "red");
+  map.setPaintProperty('highlight-line', 'line-opacity', 0.6);
+  map.setPaintProperty('highlight-line', 'line-color', "black");
 
 });
 
@@ -164,7 +152,7 @@ $('#button17').on('click', function() {
   $('.legend').hide();
   $('.2017-legend').show();
 
-  map.setPaintProperty('grade-fill', 'fill-opacity', 0.5);
+  map.setPaintProperty('grade-fill', 'fill-opacity', 0.9);
   map.setPaintProperty('grade-fill', 'fill-color', {
     type: 'categorical',
     property: "grade17",
@@ -176,8 +164,8 @@ $('#button17').on('click', function() {
       [grade17Stops[4], hexCodes[4]],
     ]
   });
-  map.setPaintProperty('highlight-line', 'line-opacity', 0.8);
-  map.setPaintProperty('highlight-line', 'line-color', "red");
+  map.setPaintProperty('highlight-line', 'line-opacity', 0.6);
+  map.setPaintProperty('highlight-line', 'line-color', "black");
 });
 
 //on button click, load map and legend for "Visitor Tweets"
@@ -185,7 +173,7 @@ $('#button16').on('click', function() {
   $('.legend').hide();
   $('.2016-legend').show();
 
-  map.setPaintProperty('grade-fill', 'fill-opacity', 0.7);
+  map.setPaintProperty('grade-fill', 'fill-opacity', 0.9);
   map.setPaintProperty('grade-fill', 'fill-color', {
     type: 'categorical',
     property: "grade16",
@@ -197,6 +185,6 @@ $('#button16').on('click', function() {
       [grade16Stops[4], hexCodes[4]],
     ]
   });
-  map.setPaintProperty('highlight-line', 'line-opacity', 0.8);
-  map.setPaintProperty('highlight-line', 'line-color', "red");
+  map.setPaintProperty('highlight-line', 'line-opacity', 0.6);
+  map.setPaintProperty('highlight-line', 'line-color', "black");
 });

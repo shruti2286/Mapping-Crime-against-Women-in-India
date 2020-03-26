@@ -1,0 +1,43 @@
+.boxc {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.vhigh {
+  background: #C0392B;
+}
+
+.high {
+  background: #EC7063;
+}
+
+.medium {
+  background: #F9E79F;
+}
+
+.low {
+  background: #2ECC71;
+}
+
+.vlow {
+  background: #138D75;
+}
+
+#buttons-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.btn {
+  margin-right: 6px;
+  background-color: lightgray;
+}
+
+.tab-content {
+  background-color: lavender;
+  border-style: groove;
+  border-radius: 15px;
+}

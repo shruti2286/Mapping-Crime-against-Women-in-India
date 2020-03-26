@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
 
@@ -13,8 +14,9 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Raleway|Lato" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="styles.css?v=1.0"> -->
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" type="text/css" href="css/custom.css">
+
 </head>
 
 <body>
@@ -23,38 +25,13 @@
     <h4 id="header">Let's find out!</h4>
     <h5 id="action">Click on the Year tags belows to find out the crime against women statistics by state in India.</h5>
 
-   <!--Buttons to toggle between display of different data on map.
+    <!--Buttons to toggle between display of different data on map.
    The buttons are wrapped in containers for centering within the sidebar. -->
     <div id="buttons-container">
       <button type="button" class="btn btn-primary" id="button18" autocomplete="off" checked>-2018-</button>
       <button type="button" class="btn btn-primary" id="button17" autocomplete="off">-2017-</button>
       <button type="button" class="btn btn-primary" id="button16" autocomplete="off">-2016-</button>
     </div>
-
-    <script>
-    // Add active class to the current button (highlight it)
-    var header = document.getElementById("myDIV");
-    var btns = header.getElementsByClassName("btn");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("active");
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";
-      });
-    }
-    </script>
-
-  <!--    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-  <label class="btn btn-secondary homebtn active">
-    <input type="radio" name="options" id="button18" autocomplete="off" checked>-2018-
-  </label>
-  <label class="btn btn-secondary homebtn">
-    <input type="radio" name="options" id="button17" autocomplete="off">-2017-
-  </label>
-  <label class="btn btn-secondary homebtn">
-    <input type="radio" name="options" id="button16" autocomplete="off">-2016-
-  </label>
-</div> -->
 
     <!-- tabs for content in sidebar -->
     <!-- code for tabs from https://getbootstrap.com/docs/4.3/components/navs/ -->
@@ -77,75 +54,88 @@
           Once data is displayed, click on a state to view more information about
           crime statistics within.</p>
 
-          <h5 class="heading">Data</h5>
-          <p>Click on the Methodology tab to view more information on how the data
-            was collected and calculated.</p>
+        <h5 class="heading">Data</h5>
+        <p>Click on the Methodology tab to view more information on how the data
+          was collected and calculated.</p>
 
-            <h5 class="heading">National Crime Records Bureau</h5>
-            <p>All data was collected from
-              <a href="http://ncrb.gov.in/">NCRB's official website</a>.
-              NCRB was set-up in 1986 to function as a repository of information
-              on crime and criminals so as to assist the investigators in linking
-              crime to the perpetrators. NCRB brings out three annual reports i.e.
-              Crime in India, Accidental Deaths & Suicides in India and Prison
-              Statistics India. These reports are principal reference points for
-              police officers, researchers, media& policy makers. This map draws
-              data from the Crime in India Reports for the Year 2018, 2017 and 2016.</p>
-            </div>
+        <h5 class="heading">National Crime Records Bureau</h5>
+        <p>All data was collected from
+          <a href="http://ncrb.gov.in/">NCRB's official website</a>.
+          NCRB was set-up in 1986 to function as a repository of information
+          on crime and criminals so as to assist the investigators in linking
+          crime to the perpetrators. NCRB brings out three annual reports i.e.
+          Crime in India, Accidental Deaths & Suicides in India and Prison
+          Statistics India. These reports are principal reference points for
+          police officers, researchers, media& policy makers. This map draws
+          data from the Crime in India Reports for the Year 2018, 2017 and 2016.</p>
+      </div>
 
-            <div class="tab-pane fade" id="nav-methods" role="tabpanel" aria-labelledby="nav-methods-tab">
-              <h5 class="heading"> <i class="fas fa-city"></i> Crime Against Women Statistics </h5>
-              <p> This map was created to provide easy access to data to local citizens
-                of India, especially women about the changing levels of safety in
-                different states over the past 3 years. Interactive maps can not
-                only help local governments to observe safety trends but also tourists
-                around the world in making better, more-informed decision about their
-                travel to India. The map extracts information on Rank of Criminality
-                by crime rate in different states from the crime reports produced by
-                NCRB and categorise the risk level into five broad categories. </p>
+      <div class="tab-pane fade" id="nav-methods" role="tabpanel" aria-labelledby="nav-methods-tab">
+        <h5 class="heading"> <i class="fas fa-city"></i> Crime Against Women Statistics </h5>
+        <p> This map was created to provide easy access to data to local citizens
+          of India, especially women about the changing levels of safety in
+          different states over the past 3 years. Interactive maps can not
+          only help local governments to observe safety trends but also tourists
+          around the world in making better, more-informed decision about their
+          travel to India. The map extracts information on Rank of Criminality
+          by crime rate in different states from the crime reports produced by
+          NCRB and categorise the risk level into five broad categories. </p>
 
-              </div>
+      </div>
 
-              <div class="tab-pane fade" id="nav-legend" role="tabpanel" aria-labelledby="nav-legend-tab">
-                <div class="legend load-legend">
-                  <p style="font-size: 12pt">Click on one of the buttons above to display some data! </p>
+      <div class="tab-pane fade" id="nav-legend" role="tabpanel" aria-labelledby="nav-legend-tab">
+        <div class="legend load-legend">
+          <p style="font-size: 12pt">Click on one of the buttons above to display some data! </p>
 
-                </div>
-                <!-- content of legend is programatically created in "functions.js"
+        </div>
+        <!-- content of legend is programatically created in "functions.js"
                 All legends have two classes, the overarching "legend" class and an additional class
                 identifying the corresponding which dataset the legend belongs to -->
-                <div class="legend 2018-legend">
-                  <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
-                  <h4>RISK LEVEL</h4>
-                  <div class="boxc vhigh"></div> Very High <br> <br>
-                  <div class="boxc high"></div> High <br> <br>
-                  <div class="boxc medium"></div> Medium <br> <br>
-                  <div class="boxc low"></div> Low <br> <br>
-                  <div class="boxc vlow"></div> Very Low <br> <br>
-                </div>
+        <div class="legend 2018-legend">
+          <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
+          <h4>RISK LEVEL</h4>
+          <div class="boxc vhigh"></div> Very High <br> <br>
+          <div class="boxc high"></div> High <br> <br>
+          <div class="boxc medium"></div> Medium <br> <br>
+          <div class="boxc low"></div> Low <br> <br>
+          <div class="boxc vlow"></div> Very Low <br> <br>
+        </div>
 
-                <div class="legend 2017-legend">
-                  <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
-                </div>
+        <div class="legend 2017-legend">
+          <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
+          <h4>RISK LEVEL</h4>
+          <div class="boxc vhigh"></div> Very High <br> <br>
+          <div class="boxc high"></div> High <br> <br>
+          <div class="boxc medium"></div> Medium <br> <br>
+          <div class="boxc low"></div> Low <br> <br>
+          <div class="boxc vlow"></div> Very Low <br> <br>
+        </div>
 
-                <div class="legend 2016-legend">
-                  <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
-                </div>
+        <div class="legend 2016-legend">
+          <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
+          <h4>RISK LEVEL</h4>
+          <div class="boxc vhigh"></div> Very High <br> <br>
+          <div class="boxc high"></div> High <br> <br>
+          <div class="boxc medium"></div> Medium <br> <br>
+          <div class="boxc low"></div> Low <br> <br>
+          <div class="boxc vlow"></div> Very Low <br> <br>
+        </div>
 
-              </div>
-            </div>
-          </div>
 
-          <div id="mapContainer">
+      </div>
+    </div>
+  </div>
 
-          </div>
+  <div id="mapContainer">
 
-          <!-- import MapboxGL, Bootstrap, Numeral, and other JS packages-->
-          <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
-          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-          <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
-          <script src="js/functions.js"></script>
-          <script src="js/scripts.js"></script>
-        </body>
+  </div>
+
+  <!-- import MapboxGL, Bootstrap, Numeral, and other JS packages-->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+  <script src="js/functions.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
