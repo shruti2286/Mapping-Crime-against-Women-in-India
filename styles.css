@@ -78,22 +78,69 @@ h1, h2, h3, h5, h6 {
   font-size: 18pt;
   text-align: center;
 
-.btn {
-  margin: 2px;
-  font-weight: 500;
-  border-radius: 5px;
-  display: inline-block;
-}
-
 .nav-item {
   font-family: 'Helvetica', sans-serif;
   text-align: center;
 }
 
 /* wrapper container for centering first line of buttons */
-#buttons-container {
+/*#buttons-container {
   width: 100%;
   text-align: center;
+}*/
+
+.homebtn {
+  margin-right: 4px;
+  margin-top: 50px;
+}
+
+/* .btn {
+  margin: 2px;
+  font-weight: 500;
+  border-radius: 5px;
+  display: inline-block;
+} */
+
+.boxc {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+.vhigh {
+  background: #C0392B;
+}
+
+.high {
+  background: #E74C3C;
+}
+
+.medium {
+  background: #F4D03F;
+}
+
+.low {
+  background: #2ECC71;
+}
+
+.vlow{
+  background: #138D75;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+  background-color: #666;
+  color: white;
 }
 
 #buttonTypology {

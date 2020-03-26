@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Raleway|Lato" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <!-- <link rel="stylesheet" href="styles.css?v=1.0"> -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
@@ -22,13 +23,38 @@
     <h4 id="header">Let's find out!</h4>
     <h5 id="action">Click on the Year tags belows to find out the crime against women statistics by state in India.</h5>
 
-    <!-- Buttons to toggle between display of different data on map.
-    The buttons are wrapped in containers for centering within the sidebar. -->
+   <!--Buttons to toggle between display of different data on map.
+   The buttons are wrapped in containers for centering within the sidebar. -->
     <div id="buttons-container">
-      <button type="button" class="btn btn-info" id="button18" >-2018-</button>
-      <button type="button" class="btn btn-info" id="button17">-2017-</button>
-      <button type="button" class="btn btn-info" id="button16">-2016-</button>
+      <button type="button" class="btn btn-primary" id="button18" autocomplete="off" checked>-2018-</button>
+      <button type="button" class="btn btn-primary" id="button17" autocomplete="off">-2017-</button>
+      <button type="button" class="btn btn-primary" id="button16" autocomplete="off">-2016-</button>
     </div>
+
+    <script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+      });
+    }
+    </script>
+
+  <!--    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-secondary homebtn active">
+    <input type="radio" name="options" id="button18" autocomplete="off" checked>-2018-
+  </label>
+  <label class="btn btn-secondary homebtn">
+    <input type="radio" name="options" id="button17" autocomplete="off">-2017-
+  </label>
+  <label class="btn btn-secondary homebtn">
+    <input type="radio" name="options" id="button16" autocomplete="off">-2016-
+  </label>
+</div> -->
 
     <!-- tabs for content in sidebar -->
     <!-- code for tabs from https://getbootstrap.com/docs/4.3/components/navs/ -->
@@ -38,6 +64,7 @@
         <a class="nav-item nav-link" id="nav-methods-tab" data-toggle="tab" href="#nav-methods" role="tab" aria-controls="nav-profile" aria-selected="false"> <i class="fas fa-search"></i> Methodology</a>
         <a class="nav-item nav-link" id="nav-legend-tab" data-toggle="tab" href="#nav-legend" role="tab" aria-controls="nav-contact" aria-selected="false"> <i class="fas fa-layer-group"></i> Legend</a>
       </div>
+
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
@@ -89,6 +116,12 @@
                 identifying the corresponding which dataset the legend belongs to -->
                 <div class="legend 2018-legend">
                   <h6>Crime against women statistics (Sum counts for Year 2018)</h6>
+                  <h4>RISK LEVEL</h4>
+                  <div class="boxc vhigh"></div> Very High <br> <br>
+                  <div class="boxc high"></div> High <br> <br>
+                  <div class="boxc medium"></div> Medium <br> <br>
+                  <div class="boxc low"></div> Low <br> <br>
+                  <div class="boxc vlow"></div> Very Low <br> <br>
                 </div>
 
                 <div class="legend 2017-legend">
