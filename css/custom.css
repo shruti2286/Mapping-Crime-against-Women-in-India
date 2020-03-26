@@ -1,3 +1,4 @@
+/* Code for styling the legend bar and setting up the color boxes in the legend */
 .boxc {
   float: left;
   width: 20px;
@@ -15,15 +16,15 @@
 }
 
 .medium {
-  background: #F9E79F;
+  background: #EDBB99;
 }
 
 .low {
-  background: #2ECC71;
+  background: #7DCEA0;
 }
 
 .vlow {
-  background: #138D75;
+  background: #27AE60;
 }
 
 #buttons-container {
@@ -33,11 +34,19 @@
 
 .btn {
   margin-right: 6px;
-  background-color: #2471A3;
+  background-color: #717D7E;
 }
 
 .tab-content {
   background-color: #D4E6F1;
   border-style: groove;
-  border-radius: 15px;
+  border-radius: 10px;
+}
+
+.legend-color-box {
+  height: 15px;
+  width: 15px;
+  float: left;
+  margin-left: 15px;
+  margin-top: 5px;
 }

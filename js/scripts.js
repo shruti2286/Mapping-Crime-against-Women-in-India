@@ -13,7 +13,7 @@ map.addControl(new mapboxgl.NavigationControl());
 
 // Load map and initialize layers
 // Layers are initially hidden, and will change visual properties depending
-// on what data source is selected for the map through the various buttons
+// on what data source is selected for the map through various buttons
 map.on('style.load', function() {
   $('.legend').hide();
   $('.load-legend').show();
@@ -37,24 +37,18 @@ map.on('style.load', function() {
     }
   }, 'waterway-label');
 
-  // add census tract lines layer
+  // add state boundary layer
   map.addLayer({
     id: 'typology-line',
     type: 'line',
     source: 'crime-data',
     paint: {
-      'line-opacity': 0.6,
-      'line-color': 'black',
-      'line-opacity': {
-        stops: [
-          [12, 0],
-          [14.8, 1]
-        ], // zoom-dependent opacity, the lines will fade in between zoom level 14 and 14.8
-      }
+      'line-color': '#FDFEFE',
+      'line-opacity': 0.5,
     }
   });
 
-  // add an empty data source, which highlights the tract that a user clicks on
+  // add an empty data source, which highlights the state boundary that a user clicks on
   map.addSource('highlight-feature', {
     type: 'geojson',
     data: {
@@ -63,22 +57,24 @@ map.on('style.load', function() {
     }
   })
 
-  // add a layer for the highlighted tract boundary
+  // add a layer for the highlighted state boundary
   map.addLayer({
     id: 'highlight-line',
     type: 'line',
     source: 'highlight-feature',
     paint: {
-      'line-width': 2.5,
+      'line-width': 1.5,
       'line-color': '#6B6B6B',
       'line-opacity': 0,
     }
   });
 
-  // when the user clicks on the census tract map, do...
+  $('#button18').click()
+
+  // when the user clicks on the state map, do...
   map.on('click', function(e) {
 
-    // selects the census tract features under the mouse
+    // selects the state features under the mouse
     var features = map.queryRenderedFeatures(e.point, {
       layers: ['grade-fill'],
     });
@@ -86,30 +82,30 @@ map.on('style.load', function() {
     // get the first feature from the array of returned features.
     var gradeObj = features[0]
 
-    if (gradeObj) { // if there's a tract under the mouse, do...
+    if (gradeObj) { // if there's a state under the mouse, do...
       map.getCanvas().style.cursor = 'pointer'; // make the cursor a pointer
 
-      //lookup the corresponding description for the typology
+      //defining variables from attribute table
       console.log(gradeObj);
       var st_nm = gradeObj.properties["state"];
       var Pop2011 = gradeObj.properties["Pop2011"];
       var pershare = gradeObj.properties["pershare"];
       var popden = gradeObj.properties["popden"];
 
-      //add popup to display typology of selected tract and detailed data
+      //add popup to display state demographics of selected state
       new mapboxgl.Popup()
         .setLngLat(e.lngLat)
         .setHTML(
           '<div id="popup" class="popup" style="z-index: 10; color:white;">' +
           '<b> Name of  State: </b>' + st_nm + " </br>" +
-          '<b> State Population: </b>' + Pop2011 + " </br>" +
+          '<b> State Population: </b>' + numeral(gradeObj.properties["Pop2011"]).format('0.0a') + " </br>" +
           '<b> Percentage Share of Women: </b>' + pershare + "%" + "</br>" +
           '<b> Population Density: </b>' + popden + " persons per mile" + '</div>'
         )
         .addTo(map);
 
 
-      // set this tract's polygon feature as the data for the highlight source
+      // set this state's polygon feature as the data for the highlight source
       map.getSource('highlight-feature').setData(gradeObj.geometry);
     } else {
       map.getCanvas().style.cursor = 'default'; // make the cursor default
@@ -123,7 +119,7 @@ map.on('style.load', function() {
   });
 });
 
-//on button click, load map and legend for "2018 Statistics"
+//on button click, load map and legend for "Risk Level in 2018"
 $('#button18').on('click', function() {
   $('.legend').hide(); // hide all legend divs
   $('.2018-legend').show(); // only show the legend for the corresponding data
@@ -147,7 +143,7 @@ $('#button18').on('click', function() {
 
 });
 
-//on button click, load map and legend for "Local Tweets"
+//on button click, load map and legend for "Risk Level in 2017"
 $('#button17').on('click', function() {
   $('.legend').hide();
   $('.2017-legend').show();
@@ -168,7 +164,7 @@ $('#button17').on('click', function() {
   map.setPaintProperty('highlight-line', 'line-color', "black");
 });
 
-//on button click, load map and legend for "Visitor Tweets"
+//on button click, load map and legend for "Risk Level in 2016"
 $('#button16').on('click', function() {
   $('.legend').hide();
   $('.2016-legend').show();

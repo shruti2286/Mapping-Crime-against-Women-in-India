@@ -61,6 +61,7 @@ h1, h2, h3, h5, h6 {
   margin: 15px 15px 15px 15px;
 }
 
+/* Style for sidebar content */
 #title {
   font-family: 'Trebuchet MS', sans-serif;
   font-weight: bold;
@@ -84,7 +85,7 @@ h1, h2, h3, h5, h6 {
     text-align: center;
   }
 
-  /* wrapper container for centering first line of buttons */
+/* Styling and spacing for Year Tag buttons */
   .homebtn {
     margin-right: 4px;
     margin-top: 50px;
@@ -110,21 +111,14 @@ h1, h2, h3, h5, h6 {
     margin: 0 auto;
   }
 
-  .legend-color-box {
-    height: 15px;
-    width: 15px;
-    float: left;
-    margin-left: 15px;
-    margin-top: 5px;
-  }
-
   .tab-pane {
     height: 100%;
     padding: 15px;
   }
 
-
   .heading {
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
   }
+
+/* Styling and formatting for legend is done in custom.css */
