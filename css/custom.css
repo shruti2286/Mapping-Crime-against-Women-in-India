@@ -50,3 +50,8 @@
   margin-left: 15px;
   margin-top: 5px;
 }
+
+.legend{
+  font-style: italic;
+  font-family: 'Trebuchet MS', sans-serif;
+}
