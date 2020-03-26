@@ -1,4 +1,4 @@
-# Mapping-Crime-in-Inida
+# Mapping-Crime-against-Women-in-India
 Web Mapping Final Project
 
 About
